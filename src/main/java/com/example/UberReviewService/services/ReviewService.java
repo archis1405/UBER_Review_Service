@@ -1,21 +1,23 @@
 package com.example.UberReviewService.services;
 
-import com.example.UberReviewService.repository.ReviewRepository;
-import org.springframework.boot.CommandLineRunner;
+import com.example.UberReviewService.models.Review;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public class ReviewService implements CommandLineRunner {
+public interface ReviewService {
 
-    private ReviewRepository reviewRepository;
+    public Optional<Review> findReviewById(Long id);
 
-    public ReviewService(ReviewRepository reviewRepository) {   // FIXED
-        this.reviewRepository = reviewRepository;
-    }
+    public List<Review> findAllReviews();
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println("*******");
+    public boolean deleteReviewById(Long id);
 
-    }
+    public Review publishReview(Review review);
+
+    public Review updateReview(Long id, Review review);
+
 }
+
