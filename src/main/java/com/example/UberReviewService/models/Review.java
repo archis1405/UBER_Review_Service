@@ -2,39 +2,30 @@ package com.example.UberReviewService.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
-
-@Entity
-@Table(name ="bookingreview")
 @Getter
 @Setter
 @Builder
-@EntityListeners(AuditingEntityListener.class)
-@AllArgsConstructor
 @NoArgsConstructor
-public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+@AllArgsConstructor
+@Entity
+@Table(name = "booking_review")
+@Inheritance(strategy = InheritanceType.JOINED)
+
+public class Review extends BaseModel {
 
     @Column(nullable = false)
-    String content;
+    private String content;
 
-    Double rating;
+    private Double rating;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    Date createdAt;
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
+    private Booking booking; // we have defined a 1:1 relationship between booking and review
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    Date updatedAt;
+    @Override
+    public String toString() {
+        return "Review: " + this.content + " " + this.rating + " " + " booking: " + this.booking.getId() + " " + this.createdAt;
+    }
 
 }
