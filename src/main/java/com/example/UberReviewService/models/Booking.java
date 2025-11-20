@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Booking extends BaseModel{
+public class Booking extends BaseModel {
 
     @Enumerated(value = EnumType.STRING)
     private BookingStatus bookingStatus;
@@ -32,8 +32,4 @@ public class Booking extends BaseModel{
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Passenger passenger;
-
-    @OneToOne
-    @JoinColumn(name = "review_id")
-    private Review review;
 }

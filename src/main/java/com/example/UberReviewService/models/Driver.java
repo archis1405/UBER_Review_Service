@@ -28,6 +28,7 @@ public class Driver extends BaseModel{
 
     private String phoneNumber;
 
+    // 1 : n , Driver : Booking
     @OneToMany(mappedBy = "driver")
     @Fetch(FetchMode.SUBSELECT)
     private List<Booking> bookings;
