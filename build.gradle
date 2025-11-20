@@ -43,10 +43,6 @@ dependencies {
 	implementation 'org.flywaydb:flyway-mysql:9.22.3'
 }
 
-configurations.all {
-	exclude group: 'org.flywaydb', module: 'flyway-core'
-}
-
 tasks.named('test') {
 	useJUnitPlatform()
 }

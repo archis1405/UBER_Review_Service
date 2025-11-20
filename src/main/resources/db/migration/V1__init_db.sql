@@ -64,3 +64,5 @@ ALTER TABLE booking
 
 ALTER TABLE passenger_review
     ADD CONSTRAINT FK_PASSENGERREVIEW_ON_ID FOREIGN KEY (id) REFERENCES booking_review (id);
+
+ALTER TABLE driver ADD COLUMN phone_number VARCHAR(255);

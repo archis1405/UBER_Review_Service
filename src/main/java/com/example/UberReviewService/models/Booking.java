@@ -33,4 +33,7 @@ public class Booking extends BaseModel{
     @ManyToOne(fetch = FetchType.LAZY)
     private Passenger passenger;
 
+    @OneToOne
+    @JoinColumn(name = "review_id")
+    private Review review;
 }
